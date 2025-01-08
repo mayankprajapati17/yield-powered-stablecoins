@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { Connection } from '@solana/web3.js';
-import { Coins, ChartLineUp, Wallet } from 'lucide-react';
+import { Coins, ChartLine, Wallet } from 'lucide-react';
 
 const Index = () => {
   const [walletAddress, setWalletAddress] = useState<string>('');
@@ -83,7 +83,7 @@ const Index = () => {
             </div>
             
             <div className="bg-gray-800/50 p-6 rounded-xl backdrop-blur-sm border border-gray-700">
-              <ChartLineUp className="w-8 h-8 text-green-500 mb-4" />
+              <ChartLine className="w-8 h-8 text-green-500 mb-4" />
               <h3 className="text-xl font-semibold mb-2">Earn Yield</h3>
               <p className="text-gray-400">Generate passive income from your stablecoin assets</p>
             </div>
