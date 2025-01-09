@@ -5,20 +5,20 @@ const Features = () => {
   const features = [
     {
       icon: Coins,
-      title: "Digital Assets",
-      description: "Create and manage your digital assets with advanced features",
+      title: "Mint Stablecoins",
+      description: "Create your own stablecoins backed by yield-bearing bonds",
       iconColor: "text-yellow-500"
     },
     {
       icon: ChartLine,
-      title: "Analytics",
-      description: "Track and analyze your portfolio performance",
+      title: "Earn Yield",
+      description: "Generate passive income from your stablecoin assets",
       iconColor: "text-green-500"
     },
     {
       icon: Wallet,
-      title: "Portfolio Management",
-      description: "Manage your digital assets portfolio efficiently",
+      title: "Manage Portfolio",
+      description: "Track and manage your stablecoin portfolio",
       iconColor: "text-purple-500"
     }
   ];
