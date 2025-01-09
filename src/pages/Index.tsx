@@ -1,3 +1,4 @@
+import React from 'react';
 import Header from '@/components/home/Header';
 import Features from '@/components/home/Features';
 import WalletConnect from '@/components/home/WalletConnect';
