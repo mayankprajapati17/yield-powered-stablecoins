@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
 
 const SUPPORTED_CURRENCIES = [
   { value: "USD", label: "US Dollar (USD)" },
@@ -23,6 +24,7 @@ const SUPPORTED_CURRENCIES = [
 ];
 
 const CreateCoin = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     symbol: "",
@@ -36,7 +38,7 @@ const CreateCoin = () => {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.size > 5 * 1024 * 1024) { // 5MB limit
+      if (file.size > 5 * 1024 * 1024) {
         toast({
           variant: "destructive",
           title: "File too large",
@@ -65,6 +67,13 @@ const CreateCoin = () => {
     setIsSubmitting(true);
 
     try {
+      // Get the current user
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      if (!user) {
+        throw new Error('User not authenticated');
+      }
+
       let imageUrl = null;
       
       if (formData.image) {
@@ -90,8 +99,9 @@ const CreateCoin = () => {
           name: formData.name,
           symbol: formData.symbol,
           target_currency: formData.targetCurrency,
-          price_peg: formData.pricePeg,
+          price_peg: parseFloat(formData.pricePeg),
           image_url: imageUrl,
+          user_id: user.id
         });
 
       if (insertError) throw insertError;
@@ -100,6 +110,9 @@ const CreateCoin = () => {
         title: "Success!",
         description: "Your coin has been created successfully.",
       });
+
+      // Navigate back to the home page after successful creation
+      navigate('/');
 
     } catch (error) {
       console.error('Error creating coin:', error);
