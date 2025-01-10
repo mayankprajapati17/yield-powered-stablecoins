@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ImageUpload } from "./ImageUpload";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/components/ui/use-toast";
@@ -34,24 +34,45 @@ export const CoinForm = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Check authentication status when component mounts
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session }, error } = await supabase.auth.getSession();
+      if (error || !session) {
+        console.log("No active session found:", error);
+        toast({
+          variant: "destructive",
+          title: "Authentication Required",
+          description: "Please sign in to create a coin.",
+        });
+        navigate('/');
+      }
+    };
+
+    checkAuth();
+  }, [navigate]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     console.log("Starting coin creation process...", formData);
 
     try {
-      // Get the current user
-      const { data: { user }, error: userError } = await supabase.auth.getUser();
+      // Get the current session instead of just the user
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
       
-      if (userError) {
-        console.error("Auth error:", userError);
-        throw new Error('Authentication error');
+      if (sessionError) {
+        console.error("Session error:", sessionError);
+        throw new Error('Authentication error: Failed to get session');
       }
 
-      if (!user) {
-        console.error("No user found");
-        throw new Error('User not authenticated');
+      if (!session) {
+        console.error("No active session");
+        throw new Error('Please sign in to create a coin');
       }
+
+      const user = session.user;
+      console.log("User authenticated:", user.id);
 
       let imageUrl = null;
       
@@ -66,7 +87,7 @@ export const CoinForm = () => {
 
         if (uploadError) {
           console.error("Image upload error:", uploadError);
-          throw uploadError;
+          throw new Error(`Failed to upload image: ${uploadError.message}`);
         }
         
         console.log("Image uploaded successfully");
@@ -91,7 +112,7 @@ export const CoinForm = () => {
 
       if (insertError) {
         console.error("Database insertion error:", insertError);
-        throw insertError;
+        throw new Error(`Failed to create coin: ${insertError.message}`);
       }
 
       console.log("Coin created successfully");
