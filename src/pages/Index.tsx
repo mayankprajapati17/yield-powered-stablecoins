@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import Header from '@/components/home/Header';
 import Features from '@/components/home/Features';
+import Header from '@/components/home/Header';
 import WalletConnect from '@/components/home/WalletConnect';
 import { Button } from '@/components/ui/button';
 import { LogIn, UserPlus } from 'lucide-react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Index = () => {
@@ -25,7 +25,7 @@ const Index = () => {
           </Button>
           <Button
             variant="outline"
-            className="text-white hover:text-white border-white hover:bg-white/10"
+            className="text-white hover:text-white hover:bg-white/10"
             asChild
           >
             <Link to="/signup">
@@ -46,6 +46,16 @@ const Index = () => {
             />
           </div>
         </div>
+      </div>
+      <div>
+        <Link to="/create-coin">
+          <Button 
+            className="bg-gradient-to-r from-yellow-500 to-purple-600 hover:from-yellow-600 hover:to-purple-700 text-white px-8 py-6 rounded-xl text-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105"
+          >
+          
+          All Coins
+          </Button>
+        </Link>
       </div>
     </div>
   );
