@@ -1,4 +1,4 @@
-import { Github, Twitter, Discord } from 'lucide-react';
+import { Github, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -36,8 +36,7 @@ const Footer = () => {
             <div className="flex space-x-4">
               {[
                 { Icon: Github, href: '#', label: 'GitHub' },
-                { Icon: Twitter, href: '#', label: 'Twitter' },
-                { Icon: Discord, href: '#', label: 'Discord' },
+                { Icon: Twitter, href: '#', label: 'Twitter' }
               ].map(({ Icon, href, label }) => (
                 <a
                   key={label}
