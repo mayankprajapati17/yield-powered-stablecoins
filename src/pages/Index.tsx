@@ -1,6 +1,7 @@
 import Features from '@/components/home/Features';
 import Header from '@/components/home/Header';
 import WalletConnect from '@/components/home/WalletConnect';
+import Footer from '@/components/home/Footer';
 import { Button } from '@/components/ui/button';
 import { LogIn, UserPlus, Coins } from 'lucide-react';
 import { useState } from 'react';
@@ -39,12 +40,12 @@ const Index = () => {
           <div className="text-center space-y-8">
             <Header />
             <Features />
-            <div className="space-y-12"> {/* Added container with vertical spacing */}
+            <div className="space-y-12">
               <WalletConnect 
                 walletAddress={walletAddress}
                 onWalletConnect={setWalletAddress}
               />
-              <div> {/* Separate container for the All Coins button */}
+              <div>
                 <Link to="/all-coins">
                   <Button 
                     className="bg-gradient-to-r from-yellow-500 to-purple-600 hover:from-yellow-600 hover:to-purple-700 text-white px-8 py-6 rounded-xl text-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105"
@@ -58,6 +59,7 @@ const Index = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
