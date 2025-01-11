@@ -2,7 +2,7 @@ import Features from '@/components/home/Features';
 import Header from '@/components/home/Header';
 import WalletConnect from '@/components/home/WalletConnect';
 import { Button } from '@/components/ui/button';
-import { LogIn, UserPlus } from 'lucide-react';
+import { LogIn, UserPlus, Coins } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -47,13 +47,13 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div>
-        <Link to="/create-coin">
+      <div className="flex justify-center pb-8">
+        <Link to="/all-coins">
           <Button 
             className="bg-gradient-to-r from-yellow-500 to-purple-600 hover:from-yellow-600 hover:to-purple-700 text-white px-8 py-6 rounded-xl text-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105"
           >
-          
-          All Coins
+            <Coins className="w-5 h-5 mr-2" />
+            All Coins
           </Button>
         </Link>
       </div>

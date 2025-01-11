@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import CreateCoin from "./pages/CreateCoin";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import AllCoins from "./pages/AllCoins";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/create-coin" element={<CreateCoin />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/all-coins" element={<AllCoins />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
