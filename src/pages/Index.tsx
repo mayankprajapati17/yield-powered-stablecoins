@@ -24,8 +24,7 @@ const Index = () => {
             </Link>
           </Button>
           <Button
-            variant="outline"
-            className="text-white hover:text-white hover:bg-white/10"
+            className="bg-gradient-to-r from-yellow-500 to-purple-600 hover:from-yellow-600 hover:to-purple-700 text-white hover:text-white transition-all duration-300"
             asChild
           >
             <Link to="/signup">
