@@ -39,22 +39,24 @@ const Index = () => {
           <div className="text-center space-y-8">
             <Header />
             <Features />
-            <WalletConnect 
-              walletAddress={walletAddress}
-              onWalletConnect={setWalletAddress}
-            />
+            <div className="space-y-12"> {/* Added container with vertical spacing */}
+              <WalletConnect 
+                walletAddress={walletAddress}
+                onWalletConnect={setWalletAddress}
+              />
+              <div> {/* Separate container for the All Coins button */}
+                <Link to="/all-coins">
+                  <Button 
+                    className="bg-gradient-to-r from-yellow-500 to-purple-600 hover:from-yellow-600 hover:to-purple-700 text-white px-8 py-6 rounded-xl text-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105"
+                  >
+                    <Coins className="w-5 h-5 mr-2" />
+                    All Coins
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex justify-center pb-8">
-        <Link to="/all-coins">
-          <Button 
-            className="bg-gradient-to-r from-yellow-500 to-purple-600 hover:from-yellow-600 hover:to-purple-700 text-white px-8 py-6 rounded-xl text-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105"
-          >
-            <Coins className="w-5 h-5 mr-2" />
-            All Coins
-          </Button>
-        </Link>
       </div>
     </div>
   );
